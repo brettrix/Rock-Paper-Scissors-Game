@@ -4,11 +4,36 @@
 import random
 
 def get_player_choice():
-    choice = input("Rock, paper, or scissors?").lower()
+    choice = input("Rock, paper, or scissors? ").lower()
     while choice != "rock" and choice != "paper" and choice != "scissors":
         print(f'Sorry, "{choice}" is not a valid choice. Please try again. ')
-        choice = input("Rock, paper, or scissors?").lower()
+        choice = input("Rock, paper, or scissors? ").lower()
     return choice
+
+def determine_winner():
+    if player_choice == computer_choice:
+        print("It's a tie! Let's go again.")
+        winner = "tie"
+    elif player_choice == "rock" and computer_choice == "scissors":
+        print("You win this round!")
+        winner = "win"
+    elif player_choice == "paper" and computer_choice == "rock":
+        print("You win this round!")
+        winner = "win"
+    elif player_choice == "scissors" and computer_choice == "paper":
+        print("You win this round!")
+        winner = "win"
+    elif player_choice == "scissors" and computer_choice == "rock":
+        print("Computer wins this round!")
+        winner = "loss"
+    elif player_choice == "paper" and computer_choice == "scissors":
+        print("Computer wins this round!")
+        winner = "loss"
+    elif player_choice == "rock" and computer_choice == "paper":
+        print("Computer wins this round!")
+        winner = "loss"
+    return winner
+
 
 #Welcome the user to the game. 
 print("Welcome to Rock, Paper, Scissors!")
@@ -28,8 +53,36 @@ player_choice = get_player_choice()
 random_choices = ["rock", "paper", "scissors"]
 computer_choice = random.choice(random_choices)
 
-#If there is a tie, the game does not count, and we push to the next one. 
+player_wins = 0
+computer_wins = 0
 
+#If there is a tie, the game does not count, and we push to the next one. 
+for i in range(2, rounds+1):
+    outcome = determine_winner()
+    while outcome == "tie":
+        player_choice = get_player_choice()
+        computer_choice = random.choice(random_choices)
+        outcome = determine_winner()
+    if outcome == "win":
+        player_wins = player_wins + 1
+        player_choice = get_player_choice()
+        computer_choice = random.choice(random_choices)
+        outcome = determine_winner()
+    if outcome == "loss":
+        computer_wins = computer_wins + 1
+        player_choice = get_player_choice()
+        computer_choice = random.choice(random_choices)
+        outcome = determine_winner()
+
+outcome = determine_winner()
+while outcome == "tie":
+    player_choice = get_player_choice()
+    computer_choice = random.choice(random_choices)
+    outcome = determine_winner()
+if outcome == "win":
+    player_wins = player_wins + 1
+if outcome == "loss":
+    computer_wins = computer_wins + 1
 
 #Keep track of the number of wins and losses for both the player and the computer. 
 
