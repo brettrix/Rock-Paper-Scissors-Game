@@ -48,41 +48,25 @@ while rounds % 2 == 0 or rounds < 0:
 
 #For the game play, ask the user for their choice and then generate a random 
 #choice for the computer. (Note: Make sure that the user's choice is valid.) 
-player_choice = get_player_choice()
 
 random_choices = ["rock", "paper", "scissors"]
-computer_choice = random.choice(random_choices)
 
 player_wins = 0
 computer_wins = 0
 
 #If there is a tie, the game does not count, and we push to the next one. 
-for i in range(2, rounds+1):
+for i in range(rounds):
+    player_choice = get_player_choice()
+    computer_choice = random.choice(random_choices)
     outcome = determine_winner()
     while outcome == "tie":
         player_choice = get_player_choice()
         computer_choice = random.choice(random_choices)
         outcome = determine_winner()
-    if outcome == "win":
-        player_wins = player_wins + 1
-        player_choice = get_player_choice()
-        computer_choice = random.choice(random_choices)
-        outcome = determine_winner()
     if outcome == "loss":
         computer_wins = computer_wins + 1
-        player_choice = get_player_choice()
-        computer_choice = random.choice(random_choices)
-        outcome = determine_winner()
-
-outcome = determine_winner()
-while outcome == "tie":
-    player_choice = get_player_choice()
-    computer_choice = random.choice(random_choices)
-    outcome = determine_winner()
-if outcome == "win":
-    player_wins = player_wins + 1
-if outcome == "loss":
-    computer_wins = computer_wins + 1
+    if outcome == "win":
+        player_wins = player_wins + 1
 
 #Keep track of the number of wins and losses for both the player and the computer. 
 
