@@ -79,10 +79,21 @@ for i in range(rounds):
         computer_wins = computer_wins + 1
     if outcome == "win":
         player_wins = player_wins + 1
+###################################################################################
+###################################################################################
+###################################################################################
+    if player_wins == (rounds // 2) + 1 or computer_wins == (rounds // 2) + 1:
+        break
+#This is a "best of" clause (the winner is automatically declared as soon as they 
+# win the majority of the rounds). If you don't like it, the program still runs fine 
+# without it if you just turn it into a note (#).
+###################################################################################
+###################################################################################
+###################################################################################
 
 #When the game play is over, determine the overall winner and print the results.
 print(" ")
-print(f"Score - You: {player_wins} | Computer: {computer_wins}")
+print(f"Score - You: {player_wins} out of {rounds} | Computer: {computer_wins} out of {rounds}")
 if player_wins > computer_wins:
     print("You win!!!")
 else:
