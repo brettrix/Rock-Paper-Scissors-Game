@@ -86,7 +86,7 @@ for i in range(rounds):
         break
 #This is a "best of" clause (the winner is automatically declared as soon as they 
 # win the majority of the rounds). If you don't like it, the program still runs fine 
-# without it if you just turn lines 85 and 86 into a note (#).
+# without it if you just turn lines 85 and 86 into a comment (#).
 ####################################################################################
 ####################################################################################
 ####################################################################################
