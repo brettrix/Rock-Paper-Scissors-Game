@@ -15,33 +15,35 @@ def get_player_choice():
 
 #2. determine_winner: This function should compare the two choices and return "win",
 #"loss", or "tie".
-def determine_winner():
-    if player_choice == computer_choice:
+def determine_winner(eleccion_de_jugador, eleccion_de_computadora):
+    print(f"The computer chose {eleccion_de_computadora}.")
+    if eleccion_de_jugador == eleccion_de_computadora:
         print("It's a tie! Let's go again.")
+        print(" ")
         winner = "tie"
-    elif player_choice == "rock" and computer_choice == "scissors":
-        print("The computer chose scissors.")
+    elif eleccion_de_jugador == "rock" and eleccion_de_computadora == "scissors":
         print("You win this round!")
+        print(" ")
         winner = "win"
-    elif player_choice == "paper" and computer_choice == "rock":
-        print("The computer chose rock.")
+    elif eleccion_de_jugador == "paper" and eleccion_de_computadora == "rock":
         print("You win this round!")
+        print(" ")
         winner = "win"
-    elif player_choice == "scissors" and computer_choice == "paper":
-        print("The computer chose paper.")
+    elif eleccion_de_jugador == "scissors" and eleccion_de_computadora == "paper":
         print("You win this round!")
+        print(" ")
         winner = "win"
-    elif player_choice == "scissors" and computer_choice == "rock":
-        print("The computer chose rock.")
+    elif eleccion_de_jugador == "scissors" and eleccion_de_computadora == "rock":
         print("Computer wins this round!")
+        print(" ")
         winner = "loss"
-    elif player_choice == "paper" and computer_choice == "scissors":
-        print("The computer chose scissors.")
+    elif eleccion_de_jugador == "paper" and eleccion_de_computadora == "scissors":
         print("Computer wins this round!")
+        print(" ")
         winner = "loss"
-    elif player_choice == "rock" and computer_choice == "paper":
-        print("The computer chose paper.")
+    elif eleccion_de_jugador == "rock" and eleccion_de_computadora == "paper":
         print("Computer wins this round!")
+        print(" ")
         winner = "loss"
     return winner
 
@@ -63,24 +65,27 @@ computer_wins = 0
 #For the game play, ask the user for their choice and then generate a random 
 #choice for the computer. (Note: Make sure that the user's choice is valid.) 
 #If there is a tie, the game does not count, and we push to the next one. 
+random_choices = ["rock", "paper", "scissors"]
+
 for i in range(rounds):
     player_choice = get_player_choice()
-    random_choices = ["rock", "paper", "scissors"]
     computer_choice = random.choice(random_choices)
-    outcome = determine_winner()
+    outcome = determine_winner(player_choice, computer_choice)
     while outcome == "tie":
         player_choice = get_player_choice()
         computer_choice = random.choice(random_choices)
-        outcome = determine_winner()
+        outcome = determine_winner(player_choice, computer_choice)
     if outcome == "loss":
         computer_wins = computer_wins + 1
     if outcome == "win":
         player_wins = player_wins + 1
 
 #When the game play is over, determine the overall winner and print the results.
+print(" ")
 print(f"Score - You: {player_wins} | Computer: {computer_wins}")
 if player_wins > computer_wins:
     print("You win!!!")
 else:
     print("The computer wins!!!")
 print("Thanks for playing!")
+print(" ")
